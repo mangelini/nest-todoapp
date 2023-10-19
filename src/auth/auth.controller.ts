@@ -4,25 +4,25 @@ import {
   Post,
   HttpCode,
   HttpStatus,
-  UseGuards,
   Request,
   Get,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { AuthGuard } from './auth.guard';
+import { SignInUserDto } from './signIn-user.dto';
+import { Public } from './public';
 
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
 
   // TODO use DTO and correct Validation
+  @Public()
   @HttpCode(HttpStatus.OK)
   @Post('login')
-  signIn(@Body() signInDto: Record<string, any>) {
-    return this.authService.signIn(signInDto.username, signInDto.password);
+  signIn(@Body() signInDto: SignInUserDto) {
+    return this.authService.signIn(signInDto.username);
   }
 
-  @UseGuards(AuthGuard)
   @Get('profile')
   getProfile(@Request() req) {
     return req.user;
