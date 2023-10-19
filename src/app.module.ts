@@ -5,6 +5,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { DatabaseModule } from './database/database.module';
 import * as Joi from 'joi';
 import { APP_PIPE } from '@nestjs/core';
+import { TodosModule } from './todos/todos.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { APP_PIPE } from '@nestjs/core';
         database: configService.get('POSTGRES_DB'),
       }),
     }),
+    TodosModule,
   ],
   providers: [
     {

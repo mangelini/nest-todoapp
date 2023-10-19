@@ -16,7 +16,6 @@ import { CreateUserDto } from 'src/users/dto/create-user.dto';
 export class AuthController {
   constructor(private authService: AuthService) {}
 
-  // TODO use DTO and correct Validation
   @Public()
   @HttpCode(HttpStatus.OK)
   @Post('login')
