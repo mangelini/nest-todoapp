@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Query,
+} from '@nestjs/common';
 import { TodosService } from './todos.service';
 import FindOneParams from 'src/utils/findOneParams';
 import GetTodosByAuthorQuery from './getTodosByAuthorQuery';
@@ -24,5 +32,10 @@ export class TodosController {
   @Post()
   createTodo(@Body() createTodoDto: CreateTodoDto) {
     return this.todosService.create(createTodoDto);
+  }
+
+  @Delete(':id')
+  async deleteTodo(@Param('id') id: number) {
+    return this.todosService.deleteTodo(id);
   }
 }

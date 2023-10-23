@@ -18,4 +18,8 @@ export class TodosService {
   async findByAuthor(author_id: number): Promise<TodoModel[] | undefined> {
     return this.todosRepository.getByAuthorId(author_id);
   }
+
+  async deleteTodo(id: number) {
+    return this.todosRepository.deleteTodo(id);
+  }
 }

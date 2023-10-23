@@ -46,4 +46,10 @@ export default class TodosRepository {
     );
     return new TodoModel(dbResponse.rows[0]);
   }
+
+  async deleteTodo(id: number) {
+    const query = 'DELETE FROM todos WHERE id = $1';
+    await this.databaseService.runQuery(query, [id]);
+    return { message: 'Todo deleted successfully' };
+  }
 }
