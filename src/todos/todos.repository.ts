@@ -27,7 +27,7 @@ export default class TodosRepository {
 
     const entities = dbResponse.rows;
 
-    if (!entities || entities.length === 0) {
+    if (!entities) {
       throw new NotFoundException();
     }
 
