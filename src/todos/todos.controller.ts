@@ -11,6 +11,7 @@ import { TodosService } from './todos.service';
 import FindOneParams from 'src/utils/findOneParams';
 import GetTodosByAuthorQuery from './getTodosByAuthorQuery';
 import CreateTodoDto from './dto/create-todo.dto';
+import { FilterTodoDto } from './dto/filter-todo.dto';
 
 // TODO Roles, what appens when we authenticate with one user but
 // we request the todos for another one?
@@ -25,8 +26,11 @@ export class TodosController {
   }
 
   @Get()
-  getTodos(@Query() { author_id }: GetTodosByAuthorQuery) {
-    return this.todosService.findByAuthor(author_id);
+  getTodos(
+    @Query() { author_id }: GetTodosByAuthorQuery,
+    @Query() filterTodoDto: FilterTodoDto,
+  ) {
+    return this.todosService.findByAuthor(author_id, filterTodoDto);
   }
 
   @Post()
